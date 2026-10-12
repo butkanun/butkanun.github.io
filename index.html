@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Butkan Ün | Frontend Developer</title>
+  <meta name="description" content="Butkan Ün, Angular, React ve TypeScript ile kurumsal web uygulamaları geliştiren Frontend Developer. Deneyim, projeler ve iletişim bilgileri.">
+  <meta name="author" content="Butkan Ün">
+  <meta property="og:title" content="Butkan Ün | Frontend Developer">
+  <meta property="og:description" content="Angular, React ve TypeScript ile kurumsal web uygulamaları geliştiriyorum.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:url" content="https://butkanun.github.io/">
+  <meta property="og:image" content="https://butkanun.github.io/images/profil.jpg">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://butkanun.github.io/">
+  <meta name="theme-color" content="#f3f4f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131826" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232640E8'/><text x='32' y='43' font-size='30' font-weight='700' text-anchor='middle' fill='white' font-family='sans-serif'>B%C3%9C</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#icerik">İçeriğe geç</a>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top">Butkan Ün</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menü</button>
+      <nav id="nav" class="nav" aria-label="Ana menü">
+        <a href="#hakkimda">Hakkımda</a>
+        <a href="#deneyim">Deneyim</a>
+        <a href="#projeler">Projeler</a>
+        <a href="#yetenekler">Yetenekler</a>
+        <a href="#egitim">Eğitim</a>
+        <a href="#sertifikalar">Sertifikalar</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="icerik" class="wrap">
+
+    <!-- GİRİŞ -->
+    <section class="hero" id="top" aria-labelledby="ad">
+      <!-- FOTOĞRAF: değiştirmek için images/profil.jpg dosyasını yenisiyle değiştir (kare olsun) -->
+      <img class="avatar" src="images/profil.jpg" alt="Butkan Ün" width="250" height="250">
+      <div class="hero-text">
+      <p class="role">Frontend Developer · İstanbul</p>
+      <h1 class="name" id="ad"><span>Butkan</span> <span>Ün</span></h1>
+      <p class="lead">Angular, React ve TypeScript ile kurumsal web uygulamaları geliştiriyorum. 6 yılı aşkın süredir gerçek zamanlı veriyle çalışan, her ekranda düzgün görünen arayüzler kuruyorum.</p>
+      <div class="actions">
+        <a class="btn" href="mailto:butkan97@outlook.com">E-posta gönder</a>
+        <a class="text-link" href="https://www.linkedin.com/in/butkan-%C3%BCn-3bb926199/">LinkedIn</a>
+        <!-- CV'ni PDF olarak cv.pdf adıyla ekleyince aşağıdaki satırın yorumunu kaldır:
+        <a class="text-link" href="cv.pdf" download>CV'yi indir</a>
+        -->
+      </div>
+      </div>
+    </section>
+
+    <!-- HAKKIMDA -->
+    <section class="block" id="hakkimda" aria-labelledby="h-hakkimda">
+      <h2 id="h-hakkimda">Hakkımda</h2>
+      <div class="body">
+        <p>Angular, React, Next.js ve TypeScript ile kurumsal web uygulamaları geliştiriyorum. Mobiliva AR-GE Merkezi'ndeki altı yılımda toplu SMS, izin yönetimi, hediye çeki ve dijital katalog gibi ürünlerin arayüzlerini geliştirdim.</p>
+        <p>En çok deneyim kazandığım konular WebSocket, SignalR ve RabbitMQ ile gerçek zamanlı veri akışı kurmak ve Tailwind CSS ile DevExtreme kullanarak her ekran boyutunda düzgün çalışan arayüzler hazırlamak. Okan Üniversitesi Bilgisayar Mühendisliği mezunuyum.</p>
+        <dl class="facts">
+          <div><dt>Konum</dt><dd>İstanbul, Türkiye</dd></div>
+          <div><dt>Deneyim</dt><dd>6 yılı aşkın, frontend</dd></div>
+          <div><dt>Odak</dt><dd>Angular, React, TypeScript</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- DENEYİM: Her <li> bir iş deneyimi. Yenisi en üstte olsun. -->
+    <section class="block" id="deneyim" aria-labelledby="h-deneyim">
+      <h2 id="h-deneyim">Deneyim</h2>
+      <ol class="rows">
+        <li>
+          <p class="when">2020 – 2026</p>
+          <div>
+            <h3>Frontend Developer</h3>
+            <p class="where">Mobiliva AR-GE Merkezi</p>
+            <p>Angular ve React ile kurumsal web uygulamaları geliştirdim. Toplu SMS, izin yönetimi, hediye çeki ve dijital katalog ürünlerinin arayüzlerini hazırladım, gerçek zamanlı veri akışlarını WebSocket, SignalR ve RabbitMQ ile kurdum. Öne çıkan işler Projeler bölümünde.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Haz – Tem 2018</p>
+          <div>
+            <h3>Stajyer</h3>
+            <p class="where">Kazancı Holding A.Ş.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Haz – Tem 2017</p>
+          <div>
+            <h3>Stajyer</h3>
+            <p class="where">CarrefourSA</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- PROJELER: Her <li> bir proje. Link eklemek için başlığı <a href="..."> içine al. -->
+    <section class="block" id="projeler" aria-labelledby="h-projeler">
+      <h2 id="h-projeler">Projeler</h2>
+      <ul class="rows projects">
+        <li>
+          <div>
+            <h3>JetSMS+</h3>
+            <p>Kurumsal toplu SMS platformu. Gönderim yönetimi, raporlama ve Excel'den kişi aktarımı sunuyor, veriler WebSocket, SignalR ve RabbitMQ ile gerçek zamanlı akıyor.</p>
+            <p class="stack">Angular, TypeScript, DevExtreme, SignalR, RabbitMQ</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>İleti Yönetim Sistemi (İYS)</h3>
+            <p>Firmaların web sitelerine entegre edilen, SMS, e-posta ve arama izinlerini yöneten platform.</p>
+            <p class="stack">Angular, TypeScript, DevExtreme</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>JetSMS Excel Add-in</h3>
+            <p>Microsoft Store'da yayınlanan, Excel içinden toplu SMS göndermeyi sağlayan eklenti. Gerçek zamanlı veri akışını SignalR ve RabbitMQ ile kurdum.</p>
+            <p class="stack">Excel eklentisi, SignalR, RabbitMQ</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Angrypins</h3>
+            <p>Oyun ve dijital platformlar için PIN satın alma sitesi. Responsive arayüz tasarımını ve geliştirmesini üstlendim.</p>
+            <p class="stack">React, Next.js, Redux, Tailwind CSS</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Hediye Çeki Yönetimi</h3>
+            <p>Rol bazlı yetkilendirme, yönetim paneli, sipariş ve çek işlemleri ile raporlama içeren uygulama.</p>
+            <p class="stack">Angular, Tailwind CSS</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Dijital Katalog – ŞOK</h3>
+            <p>Kategori filtreleme, sepet ve barkodla kasa işlemleri sunan responsive dijital katalog uygulaması.</p>
+            <p class="stack">Angular, Tailwind CSS</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- YETENEKLER -->
+    <section class="block" id="yetenekler" aria-labelledby="h-yetenekler">
+      <h2 id="h-yetenekler">Yetenekler</h2>
+      <div class="skills">
+        <div>
+          <h3>Frontend</h3>
+          <ul>
+            <li>Angular</li>
+            <li>React</li>
+            <li>Next.js</li>
+            <li>TypeScript</li>
+            <li>JavaScript</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>Tailwind CSS</li>
+            <li>Redux</li>
+            <li>DevExtreme</li>
+            <li>Responsive tasarım</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Gerçek zamanlı iletişim</h3>
+          <ul>
+            <li>WebSocket</li>
+            <li>SignalR</li>
+            <li>RabbitMQ</li>
+          </ul>
+        </div>
+        <div>
+          <h3>DevOps ve araçlar</h3>
+          <ul>
+            <li>Docker</li>
+            <li>Jenkins</li>
+            <li>Nginx</li>
+            <li>Linux</li>
+            <li>Git</li>
+            <li>Jira</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Diğer</h3>
+          <ul>
+            <li>Scrum</li>
+            <li>SQL</li>
+            <li>C#</li>
+            <li>Unity</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EĞİTİM -->
+    <section class="block" id="egitim" aria-labelledby="h-egitim">
+      <h2 id="h-egitim">Eğitim</h2>
+      <ol class="rows">
+        <li>
+          <p class="when">2015 – 2019</p>
+          <div>
+            <h3>Bilgisayar Mühendisliği, lisans</h3>
+            <p class="where">Okan Üniversitesi</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- SERTİFİKALAR: Yenisi en üstte olsun. -->
+    <section class="block" id="sertifikalar" aria-labelledby="h-sertifikalar">
+      <h2 id="h-sertifikalar">Sertifikalar</h2>
+      <ol class="rows">
+        <li>
+          <p class="when">Haziran 2023</p>
+          <div>
+            <h3>Web Sitesi Kullanılabilirliği</h3>
+            <p class="where">BTK Akademi</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Haziran 2022</p>
+          <div>
+            <h3>CSS</h3>
+            <p class="where">BTK Akademi</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Eyl 2020 – Şub 2021</p>
+          <div>
+            <h3>Game Developer Trainee</h3>
+            <p class="where">Wissen Akademie</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Şubat 2020</p>
+          <div>
+            <h3>Programming in C#</h3>
+            <p class="where">Microsoft</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- İLETİŞİM -->
+    <section class="block" id="iletisim" aria-labelledby="h-iletisim">
+      <h2 id="h-iletisim">İletişim</h2>
+      <div class="body">
+        <p>Bir iş, proje ya da tanışmak için yazabilirsin.</p>
+        <p class="mail-row">
+          <a class="mail" id="eposta" href="mailto:butkan97@outlook.com">butkan97@outlook.com</a>
+          <button class="copy-btn" type="button" data-copy="eposta" aria-live="polite" hidden>Kopyala</button>
+        </p>
+        <ul class="links">
+          <li><a class="text-link" href="https://www.linkedin.com/in/butkan-%C3%BCn-3bb926199/">LinkedIn</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="yil">2026</span> Butkan Ün</p>
+    </div>
+  </footer>
+</body>
+</html>
