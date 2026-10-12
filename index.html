@@ -18,6 +18,14 @@
   <meta name="theme-color" content="#131826" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232640E8'/><text x='32' y='43' font-size='30' font-weight='700' text-anchor='middle' fill='white' font-family='sans-serif'>B%C3%9C</text></svg>">
 
+  <script>
+    // Kayıtlı tema tercihini sayfa çizilmeden uygula, yanıp sönmesin
+    try {
+      var t = localStorage.getItem('tema');
+      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&display=swap" rel="stylesheet">
@@ -30,7 +38,13 @@
   <header class="topbar">
     <div class="wrap topbar-inner">
       <a class="brand" href="#top">Butkan Ün</a>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menü</button>
+      <div class="tools">
+        <button class="theme-btn" type="button" aria-label="Koyu temaya geç" title="Koyu tema" hidden>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" hidden><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menü</button>
+      </div>
       <nav id="nav" class="nav" aria-label="Ana menü">
         <a href="#hakkimda">Hakkımda</a>
         <a href="#deneyim">Deneyim</a>
@@ -260,10 +274,22 @@
       <h2 id="h-iletisim">İletişim</h2>
       <div class="body">
         <p>Bir iş, proje ya da tanışmak için yazabilirsin.</p>
-        <p class="mail-row">
-          <a class="mail" id="eposta" href="mailto:butkan97@outlook.com">butkan97@outlook.com</a>
-          <button class="copy-btn" type="button" data-copy="eposta" aria-live="polite" hidden>Kopyala</button>
-        </p>
+        <dl class="contact">
+          <div>
+            <dt>E-posta</dt>
+            <dd class="mail-row">
+              <a class="mail" id="eposta" href="mailto:butkan97@outlook.com">butkan97@outlook.com</a>
+              <button class="copy-btn" type="button" data-copy="eposta" aria-live="polite" hidden>Kopyala</button>
+            </dd>
+          </div>
+          <div>
+            <dt>Telefon</dt>
+            <dd class="mail-row">
+              <a class="mail" id="telefon" href="tel:+905365817242">0536 581 72 42</a>
+              <button class="copy-btn" type="button" data-copy="telefon" aria-live="polite" hidden>Kopyala</button>
+            </dd>
+          </div>
+        </dl>
         <ul class="links">
           <li><a class="text-link" href="https://www.linkedin.com/in/butkan-%C3%BCn-3bb926199/">LinkedIn</a></li>
         </ul>

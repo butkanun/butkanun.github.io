@@ -156,6 +156,7 @@ img {
 }
 
 .brand {
+  margin-right: auto;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.125rem;
@@ -184,6 +185,50 @@ img {
 .nav a[aria-current="true"] {
   color: var(--ink);
   border-bottom-color: var(--accent);
+}
+
+/* Sağ üstteki düğmeler: tema ve (dar ekranda) menü */
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 44rem) {
+  .tools {
+    order: 3;
+  }
+}
+
+.theme-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  padding: 0;
+  color: var(--ink);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.theme-btn:hover {
+  border-color: var(--accent);
+}
+
+.theme-btn svg {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* Tema değişirken renkler yumuşak geçsin (yalnızca düğmeye basınca) */
+@media (prefers-reduced-motion: no-preference) {
+  .tema-gecis,
+  .tema-gecis * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+  }
 }
 
 .menu-btn {
@@ -273,22 +318,14 @@ img {
 
 /* Sayfada akılda kalacak tek hareket: ad, dar halinden normal haline açılır */
 .name {
-  font-size: clamp(3rem, 10vw, 7.5rem);
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
   font-weight: 700;
   font-stretch: 100%;
-  line-height: 0.92;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   overflow-wrap: break-word;
 }
 
-.name span {
-  display: block;
-}
-
-/* İkinci satırdaki Ü, Ö, İ gibi harflerin noktaları üst satıra değmesin */
-.name span + span {
-  margin-top: 0.14em;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .name {
@@ -502,10 +539,16 @@ img {
 .skills ul {
   display: flex;
   flex-wrap: wrap;
+  /* Başlık iki satıra inince etiketler uzayıp yazı yukarıda kalmasın */
+  align-items: flex-start;
+  align-content: flex-start;
   gap: 0.5rem;
 }
 
 .skills li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-display);
   font-size: 0.95rem;
   line-height: 1.3;
@@ -515,20 +558,38 @@ img {
 }
 
 /* İletişim */
+/* E-posta ve telefon */
+.contact {
+  display: grid;
+  gap: 1.25rem;
+  margin: 1.75rem 0 0;
+}
+
+.contact dt {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.contact dd {
+  margin: 0.25rem 0 0;
+}
+
 .mail {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4.5vw, 2.5rem);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.3;
   overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
   text-decoration: underline;
   text-decoration-color: var(--accent);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 0.2em;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
 }
 
 .mail:hover {
-  text-decoration-thickness: 6px;
+  text-decoration-thickness: 4px;
 }
 
 .mail-row {
@@ -633,14 +694,6 @@ img {
     animation: none;
   }
 
-  .name span {
-    display: inline;
-  }
-
-  .name span + span {
-    margin-top: 0;
-  }
-
   .lead {
     max-width: none;
     margin-top: 0.75rem;
@@ -678,7 +731,7 @@ img {
   }
 
   .mail {
-    font-size: 14pt;
+    font-size: 12pt;
   }
 
   a[href^="http"]::after {

@@ -33,6 +33,57 @@
     });
   }
 
+  // ---------- Açık / koyu tema ----------
+  var root = document.documentElement;
+  var themeBtn = document.querySelector('.theme-btn');
+  var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+  // Seçim yapılmadıysa sistem temasına uy
+  function currentTheme() {
+    var chosen = root.getAttribute('data-theme');
+    if (chosen === 'dark' || chosen === 'light') return chosen;
+    return darkQuery && darkQuery.matches ? 'dark' : 'light';
+  }
+
+  function syncTheme() {
+    var dark = currentTheme() === 'dark';
+    themeBtn.setAttribute('aria-label', dark ? 'Açık temaya geç' : 'Koyu temaya geç');
+    themeBtn.setAttribute('title', dark ? 'Açık tema' : 'Koyu tema');
+    // SVG'de .hidden özelliği çalışmaz, özniteliği doğrudan değiştir
+    themeBtn.querySelector('.icon-sun').toggleAttribute('hidden', !dark);
+    themeBtn.querySelector('.icon-moon').toggleAttribute('hidden', dark);
+
+    // Telefonda tarayıcı çubuğunun rengi de temaya uysun
+    var bg = getComputedStyle(document.body).backgroundColor;
+    Array.prototype.forEach.call(document.querySelectorAll('meta[name="theme-color"]'), function (m) {
+      m.setAttribute('content', bg);
+    });
+  }
+
+  if (themeBtn) {
+    themeBtn.hidden = false;
+    syncTheme();
+
+    themeBtn.addEventListener('click', function () {
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.classList.add('tema-gecis');
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('tema', next); } catch (e) {}
+      syncTheme();
+      setTimeout(function () { root.classList.remove('tema-gecis'); }, 400);
+    });
+
+    if (darkQuery) {
+      if (darkQuery.addEventListener) darkQuery.addEventListener('change', syncTheme);
+      else if (darkQuery.addListener) darkQuery.addListener(syncTheme);
+    }
+
+    // Tema dışarıdan değişirse (ör. barındıran sayfa) düğme de güncellensin
+    if ('MutationObserver' in window) {
+      new MutationObserver(syncTheme).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    }
+  }
+
   // ---------- Altbilgideki yıl ----------
   var year = document.getElementById('yil');
   if (year) year.textContent = new Date().getFullYear();
