@@ -1,8 +1,36 @@
 (function () {
   'use strict';
 
+  var root = document.documentElement;
+
   // CSS'in "JS çalışıyor" durumunu bilmesi için
-  document.documentElement.classList.add('js');
+  root.classList.add('js');
+
+  // ---------- Sayfanın dili ve düğme metinleri ----------
+  var lang = (root.getAttribute('lang') || 'tr').slice(0, 2).toLowerCase();
+  var TEXT = {
+    tr: {
+      menu: 'Menü',
+      close: 'Kapat',
+      copied: 'Kopyalandı',
+      selected: 'Seçildi',
+      toLight: 'Açık temaya geç',
+      toDark: 'Koyu temaya geç',
+      light: 'Açık tema',
+      dark: 'Koyu tema'
+    },
+    en: {
+      menu: 'Menu',
+      close: 'Close',
+      copied: 'Copied',
+      selected: 'Selected',
+      toLight: 'Switch to light theme',
+      toDark: 'Switch to dark theme',
+      light: 'Light theme',
+      dark: 'Dark theme'
+    }
+  };
+  var T = TEXT[lang] || TEXT.tr;
 
   var nav = document.getElementById('nav');
   var menuBtn = document.querySelector('.menu-btn');
@@ -11,7 +39,7 @@
   function setMenu(open) {
     nav.classList.toggle('is-open', open);
     menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.textContent = open ? 'Kapat' : 'Menü';
+    menuBtn.textContent = open ? T.close : T.menu;
   }
 
   if (nav && menuBtn) {
@@ -34,7 +62,6 @@
   }
 
   // ---------- Açık / koyu tema ----------
-  var root = document.documentElement;
   var themeBtn = document.querySelector('.theme-btn');
   var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
@@ -47,8 +74,8 @@
 
   function syncTheme() {
     var dark = currentTheme() === 'dark';
-    themeBtn.setAttribute('aria-label', dark ? 'Açık temaya geç' : 'Koyu temaya geç');
-    themeBtn.setAttribute('title', dark ? 'Açık tema' : 'Koyu tema');
+    themeBtn.setAttribute('aria-label', dark ? T.toLight : T.toDark);
+    themeBtn.setAttribute('title', dark ? T.light : T.dark);
     // SVG'de .hidden özelliği çalışmaz, özniteliği doğrudan değiştir
     themeBtn.querySelector('.icon-sun').toggleAttribute('hidden', !dark);
     themeBtn.querySelector('.icon-moon').toggleAttribute('hidden', dark);
@@ -84,11 +111,64 @@
     }
   }
 
+  // ---------- Dil seçimi (TR / EN) ----------
+  // İki sayfadaki bölüm kimlikleri: diğer dile geçince aynı bölümde açılsın
+  var SECTIONS = [
+    ['hakkimda', 'about'],
+    ['deneyim', 'experience'],
+    ['projeler', 'projects'],
+    ['yetenekler', 'skills'],
+    ['egitim', 'education'],
+    ['sertifikalar', 'certificates'],
+    ['iletisim', 'contact']
+  ];
+
+  // Ekranın üst yarısına gelmiş son bölüm
+  function visibleSectionId() {
+    var sections = document.querySelectorAll('main section[id]');
+    if (!sections.length) return null;
+
+    // Sayfanın sonundaysan son bölüm (İletişim) yukarı kadar çıkamaz, onu say
+    var bottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 2;
+    if (bottom && window.pageYOffset > 0) return sections[sections.length - 1].id;
+
+    var limit = window.innerHeight * 0.45;
+    var found = null;
+    Array.prototype.forEach.call(sections, function (s) {
+      if (s.getBoundingClientRect().top <= limit) found = s.id;
+    });
+    return found;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.lang a[hreflang]'), function (link) {
+    var href = link.getAttribute('href');
+
+    // Bilgisayarda dosyaya çift tıklayıp açınca klasör yerine sayfa açılsın
+    if (location.protocol === 'file:' && /\/$/.test(href)) {
+      link.setAttribute('href', href + 'index.html');
+    }
+
+    var target = link.getAttribute('hreflang');
+    if (target === lang) return;
+
+    link.addEventListener('click', function () {
+      var id = visibleSectionId();
+      var from = lang === 'en' ? 1 : 0;
+      var to = target === 'en' ? 1 : 0;
+      var mapped = null;
+      SECTIONS.forEach(function (pair) {
+        if (pair[from] === id) mapped = pair[to];
+      });
+      var base = link.getAttribute('href').split('#')[0];
+      link.setAttribute('href', mapped ? base + '#' + mapped : base);
+    });
+  });
+
   // ---------- Altbilgideki yıl ----------
   var year = document.getElementById('yil');
   if (year) year.textContent = new Date().getFullYear();
 
-  // ---------- E-posta adresini kopyala ----------
+  // ---------- E-posta ve telefonu kopyala ----------
   Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (btn) {
     var target = document.getElementById(btn.getAttribute('data-copy'));
     if (!target) return;
@@ -103,20 +183,20 @@
       timer = setTimeout(function () { btn.textContent = label; }, 2500);
     }
 
-    // Pano izni yoksa adresi seçili bırak, kullanıcı kendisi kopyalasın
+    // Pano izni yoksa metni seçili bırak, kullanıcı kendisi kopyalasın
     function selectText() {
       var range = document.createRange();
       range.selectNodeContents(target);
       var sel = window.getSelection();
       sel.removeAllRanges();
       sel.addRange(range);
-      show('Adres seçildi');
+      show(T.selected);
     }
 
     btn.addEventListener('click', function () {
       var text = target.textContent.trim();
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () { show('Kopyalandı'); }, selectText);
+        navigator.clipboard.writeText(text).then(function () { show(T.copied); }, selectText);
       } else {
         selectText();
       }
@@ -145,5 +225,9 @@
       var section = document.getElementById(id);
       if (section) observer.observe(section);
     });
+
+    // En üste dönünce menüde işaretli bölüm kalmasın
+    var hero = document.getElementById('top');
+    if (hero) observer.observe(hero);
   }
 })();

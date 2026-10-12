@@ -194,7 +194,7 @@ img {
   gap: 0.5rem;
 }
 
-@media (min-width: 44rem) {
+@media (min-width: 64rem) {
   .tools {
     order: 3;
   }
@@ -223,6 +223,49 @@ img {
   height: 1.15rem;
 }
 
+/* Dil seçimi: TR | EN, seçili dil vurgulu */
+.lang {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+}
+
+.lang a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.3rem;
+  height: calc(2.3rem - 2px);
+  padding-inline: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.lang a + a {
+  border-left: 1px solid var(--line);
+}
+
+.lang a:first-child {
+  border-radius: 0.45rem 0 0 0.45rem;
+}
+
+.lang a:last-child {
+  border-radius: 0 0.45rem 0.45rem 0;
+}
+
+.lang a:hover {
+  color: var(--ink);
+}
+
+.lang a[aria-current="true"] {
+  color: var(--ink);
+  background: var(--line);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
 /* Tema değişirken renkler yumuşak geçsin (yalnızca düğmeye basınca) */
 @media (prefers-reduced-motion: no-preference) {
   .tema-gecis,
@@ -241,14 +284,18 @@ img {
   background: none;
   border: 1px solid var(--line);
   border-radius: 0.5rem;
-  padding: 0.4rem 0.9rem;
+  /* Dil ve tema düğmeleriyle aynı yükseklikte */
+  height: 2.3rem;
+  align-items: center;
+  padding: 0 0.9rem;
+  line-height: 1;
   cursor: pointer;
 }
 
 /* Dar ekranda menü: JS çalışıyorsa açılır/kapanır, çalışmıyorsa hep açık kalır */
-@media (max-width: 43.99rem) {
+@media (max-width: 63.99rem) {
   .js .menu-btn {
-    display: inline-block;
+    display: inline-flex;
   }
 
   .js .nav {

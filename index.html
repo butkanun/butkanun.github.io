@@ -10,28 +10,35 @@
   <meta property="og:description" content="Angular, React ve TypeScript ile kurumsal web uygulamaları geliştiriyorum.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="og:url" content="https://butkanun.github.io/">
   <meta property="og:image" content="https://butkanun.github.io/images/profil.jpg">
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://butkanun.github.io/">
+  <link rel="alternate" hreflang="tr" href="https://butkanun.github.io/">
+  <link rel="alternate" hreflang="en" href="https://butkanun.github.io/en/">
+  <link rel="alternate" hreflang="x-default" href="https://butkanun.github.io/">
   <meta name="theme-color" content="#f3f4f8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#131826" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232640E8'/><text x='32' y='43' font-size='30' font-weight='700' text-anchor='middle' fill='white' font-family='sans-serif'>B%C3%9C</text></svg>">
 
   <script>
     // Kayıtlı tema tercihini sayfa çizilmeden uygula, yanıp sönmesin
-    try {
-      var t = localStorage.getItem('tema');
-      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-    } catch (e) {}
+    (function () {
+      try {
+        var tema = localStorage.getItem('tema');
+        if (tema === 'dark' || tema === 'light') document.documentElement.setAttribute('data-theme', tema);
+      } catch (e) {}
+    })();
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&display=swap" rel="stylesheet">
   <!-- ?v= numarası: CSS/JS her değiştiğinde artır, tarayıcılar eski dosyayı önbellekten kullanmasın -->
-  <link rel="stylesheet" href="style.css?v=2">
-  <script src="script.js?v=2" defer></script>
+  <!-- İngilizce sayfa en/index.html: aynı yapıda. İçerik değişince ikisini birlikte güncelle. -->
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="script.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip" href="#icerik">İçeriğe geç</a>
@@ -40,6 +47,10 @@
     <div class="wrap topbar-inner">
       <a class="brand" href="#top">Butkan Ün</a>
       <div class="tools">
+        <div class="lang" role="group" aria-label="Dil">
+          <a href="./" hreflang="tr" lang="tr" aria-current="true" aria-label="Türkçe" title="Türkçe">TR</a>
+          <a href="en/" hreflang="en" lang="en" aria-label="English" title="English">EN</a>
+        </div>
         <button class="theme-btn" type="button" aria-label="Koyu temaya geç" title="Koyu tema" hidden>
           <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" hidden><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
